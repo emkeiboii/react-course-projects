@@ -157,6 +157,15 @@ const { title, author, genres } = book;
 
 // const secondaryGenre = genres[1]
 
-const { primaryGenre, secondaryGenre } = genres;
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 
-console.log(author, title, primaryGenre);
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+const newGenres = [...genres, "epic fantasy"];
+const updatedBook = {
+  ...book,
+  moviePublicationDate: "2001-12-19",
+  pages: 1210,
+};
+
+updatedBook;
