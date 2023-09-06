@@ -151,7 +151,8 @@ const book = getBook(1);
 
 // const author = book.author;
 
-const { title, author, genres, pages, publicationDate } = book;
+const { title, author, genres, pages, publicationDate, hasMovieAdaptation } =
+  book;
 
 // const primaryGenre = genres[0];
 
@@ -172,5 +173,7 @@ updatedBook;
 
 const summary = `${title}, a ${pages}-page long book book, was written by ${author} and published in ${
   publicationDate.split("-")[0]
-}`;
+}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 summary;
+
+const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
