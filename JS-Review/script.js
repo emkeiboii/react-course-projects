@@ -151,7 +151,7 @@ const book = getBook(1);
 
 // const author = book.author;
 
-const { title, author, genres } = book;
+const { title, author, genres, pages, publicationDate } = book;
 
 // const primaryGenre = genres[0];
 
@@ -169,3 +169,8 @@ const updatedBook = {
 };
 
 updatedBook;
+
+const summary = `${title}, a ${pages}-page long book book, was written by ${author} and published in ${
+  publicationDate.split("-")[0]
+}`;
+summary;
