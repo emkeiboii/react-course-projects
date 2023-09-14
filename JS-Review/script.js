@@ -179,3 +179,9 @@ const summary = `${title}, a ${pages}-page long book book, was written by ${auth
 summary;
 
 const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
+
+console.log(true && "true string");
+console.log(false && "true string");
+
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+spanishTranslation;
