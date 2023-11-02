@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function App() {
   return (
     <>
@@ -7,12 +9,21 @@ export default function App() {
 }
 
 function EatNSplit() {
+  const [open, setOpen] = useState(false);
+
+  function handleToggle() {
+    console.log(open);
+    setOpen((open) => !open);
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
         <FriendsList />
-        <FriendForm />
-        <button className="button">Chiudi</button>
+        {open ? <FriendForm /> : null}
+        <Button onClick={() => handleToggle()}>
+          {open ? "Chiudi" : "Aggiungi amico"}
+        </Button>
       </div>
       <BillForm />
     </div>
@@ -45,30 +56,30 @@ function FriendsList() {
     <ul>
       {initialFriends.map((f) => (
         <Friend
-          key={f.id}
           id={f.id}
           name={f.name}
           image={f.image}
           balance={f.balance}
+          key={f.id}
         />
       ))}
     </ul>
   );
 }
 
-function Friend({ id, name, image, balance }) {
+function Friend({ name, image, balance }) {
   return (
-    <li id={id}>
-      <img src={image} alt={id} />
+    <li>
+      <img src={image} alt={name} />
       <h3>{name}</h3>
       <p className={balance === 0 ? "" : balance > 0 ? "green" : "red"}>
         {balance === 0
           ? `Tu e ${name} siete in pari`
           : balance > 0
-          ? `${name} ti deve ${balance}`
-          : `Devi a ${name} ${balance} `}
+          ? `${name} ti deve €${Math.abs(balance)}`
+          : `Devi a ${name} €${Math.abs(balance)} `}
       </p>
-      <button className="button">Seleziona</button>
+      <Button>Seleziona</Button>
     </li>
   );
 }
@@ -77,10 +88,10 @@ function FriendForm() {
   return (
     <form className="form-add-friend">
       <label>👬 Nome Amico</label>
-      <input></input>
+      <input type="text"></input>
       <label>🌄 URL Immagine</label>
-      <input></input>
-      <button className="button">Aggiungi amico</button>
+      <input type="text"></input>
+      <Button>Aggiungi amico</Button>
     </form>
   );
 }
@@ -90,17 +101,25 @@ function BillForm() {
     <form className="form-split-bill">
       <h2>dividi il conto con X</h2>
       <label>🧾 Conto</label>
-      <input type="number"></input>
+      <input type="text"></input>
       <label>🧍 Tue Spese</label>
-      <input type="number"></input>
+      <input type="text"></input>
       <label>👬 Spese di X</label>
-      <input type="number"></input>
+      <input type="text" disabled></input>
       <label>🤑 Chi paga il conto?</label>
       <select>
-        <option>Tu</option>
-        <option>X</option>
+        <option value="user">Tu</option>
+        <option value="friend">X</option>
       </select>
-      <button className="button">Dividi il conto</button>
+      <Button>Dividi il conto</Button>
     </form>
+  );
+}
+
+function Button({ children, onClick }) {
+  return (
+    <button className="button" onClick={() => onClick()}>
+      {children}
+    </button>
   );
 }
