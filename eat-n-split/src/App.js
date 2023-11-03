@@ -8,21 +8,30 @@ export default function App() {
   );
 }
 
+/* ------------------------------------------------------------------------------------------ */
+
+function Button({ children, onClick }) {
+  return (
+    <button className="button" onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
 function EatNSplit() {
-  const [open, setOpen] = useState(false);
+  const [showAddFriend, setShowAddFriend] = useState(false);
 
   function handleToggle() {
-    console.log(open);
-    setOpen((open) => !open);
+    setShowAddFriend((showAddFriend) => !showAddFriend);
   }
 
   return (
     <div className="app">
       <div className="sidebar">
         <FriendsList />
-        {open ? <FriendForm /> : null}
-        <Button onClick={() => handleToggle()}>
-          {open ? "Chiudi" : "Aggiungi amico"}
+        {showAddFriend && <FriendForm />}
+        <Button onClick={handleToggle}>
+          {showAddFriend ? "Chiudi" : "Aggiungi amico"}
         </Button>
       </div>
       <BillForm />
@@ -113,13 +122,5 @@ function BillForm() {
       </select>
       <Button>Dividi il conto</Button>
     </form>
-  );
-}
-
-function Button({ children, onClick }) {
-  return (
-    <button className="button" onClick={() => onClick()}>
-      {children}
-    </button>
   );
 }
