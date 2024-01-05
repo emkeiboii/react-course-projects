@@ -3,3 +3,42 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+button {
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 0.5px rgb(192, 192, 192) solid;
+  padding: 6px;
+}
+
+input {
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 0.5px rgb(192, 192, 192) solid;
+  padding: 6px;
+}
+
+.currency-converter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 32px;
+}
+
+.btn-reverse {
+  background-color: none;
+  border: 0.5px rgb(192, 192, 192) solid;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.select-disable {
+  cursor: not-allowed;
+}
