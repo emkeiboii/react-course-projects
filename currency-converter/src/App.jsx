@@ -44,6 +44,7 @@ export default function App() {
     }
     getCurrencies();
   }, []);
+
   function handleReverse() {
     setCurrency1(currency2);
     setCurrency2(currency1);
@@ -51,25 +52,28 @@ export default function App() {
 
   return (
     <div className="currency-converter">
-      <div className="currency-container">
+      <div className="currency-input">
         <input
           type="text"
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
         />
-        <select
-          value={currency1}
-          onChange={(e) => setCurrency1(e.target.value)}
-        >
-          {currencyList.map((currency) => (
-            <option key={currency}>{currency}</option>
-          ))}
-        </select>
+        <div className="select-input">
+          <hr />
+          <select
+            value={currency1}
+            onChange={(e) => setCurrency1(e.target.value)}
+          >
+            {currencyList.map((currency) => (
+              <option key={currency}>{currency}</option>
+            ))}
+          </select>
+        </div>
       </div>
       <button className="btn-reverse" onClick={handleReverse}>
         &harr;
       </button>
-      <div className="currency-container">
+      <div className="currency-input">
         <input
           className="select-disable"
           disabled
@@ -81,14 +85,17 @@ export default function App() {
               : "Convert to"
           }
         />
-        <select
-          value={currency2}
-          onChange={(e) => setCurrency2(e.target.value)}
-        >
-          {currencyList.map((currency) => (
-            <option key={currency}>{currency}</option>
-          ))}
-        </select>
+        <div className="select-input">
+          <hr />
+          <select
+            value={currency2}
+            onChange={(e) => setCurrency2(e.target.value)}
+          >
+            {currencyList.map((currency) => (
+              <option key={currency}>{currency}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );

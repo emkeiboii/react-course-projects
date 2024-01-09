@@ -6,6 +6,22 @@
 
 button {
   cursor: pointer;
+  background-color: white;
+}
+
+.currency-input {
+  display: flex;
+}
+
+input {
+  outline: 0;
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 0.5px rgb(192, 192, 192) solid;
+  padding: 6px;
+  width: 150px;
+  border-right-style: none;
 }
 
 select {
@@ -14,14 +30,15 @@ select {
   border-bottom-right-radius: 5px;
   border: 0.5px rgb(192, 192, 192) solid;
   padding: 6px;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  border-left-style: none;
+  transition: background-color ease-in-out 250ms;
 }
 
-input {
-  cursor: pointer;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border: 0.5px rgb(192, 192, 192) solid;
-  padding: 6px;
+select:hover {
+  background-color: rgb(225, 225, 225);
 }
 
 .currency-converter {
@@ -32,13 +49,34 @@ input {
   margin: 32px;
 }
 
+.select-disable {
+  cursor: not-allowed;
+}
+
+.select-input {
+  display: flex;
+  align-items: center;
+}
+
+hr {
+  border-width: 0.5px;
+  height: 20px;
+  border-color: rgb(237, 237, 237);
+}
+
+.currency-input:focus {
+  outline: 2px solid blue;
+  border-radius: 5px;
+}
+
 .btn-reverse {
   background-color: none;
   border: 0.5px rgb(192, 192, 192) solid;
   padding: 6px;
   border-radius: 3px;
+  transition: background-color ease-in-out 250ms;
 }
 
-.select-disable {
-  cursor: not-allowed;
+.btn-reverse:hover {
+  background-color: rgb(225, 225, 225);
 }
