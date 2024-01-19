@@ -1,16 +1,17 @@
 import { useEffect, useReducer } from "react";
-import Header from "./Header.js";
-import Main from "./Main.js";
-import Loader from "./Loader.js";
-import Error from "./Error.js";
-import StartQuestions from "./StartQuestions.js";
-import Questions from "./Questions.js";
+import Header from "./components/Header.js";
+import Main from "./components/Main.js";
+import Loader from "./components/Loader.js";
+import Error from "./components/Error.js";
+import StartQuestions from "./components/StartQuestions.js";
+import Questions from "./components/Questions.js";
 
 const initialState = {
   questions: [],
 
   //loading, error, ready, active, finished
   status: "loading",
+  index: 0,
 };
 
 function reducer(state, action) {
@@ -37,7 +38,10 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   useEffect(function () {
     fetch("http://localhost:8000/questions")
@@ -57,7 +61,7 @@ export default function App() {
           <StartQuestions numQuestions={numQuestions} dispatch={dispatch} />
         )}
         {status === "error" && <Error />}
-        {status === "active" && <Questions />}
+        {status === "active" && <Questions question={questions[index]} />}
       </Main>
     </div>
   );
