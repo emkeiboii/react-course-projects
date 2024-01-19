@@ -41,11 +41,11 @@ body {
 }
 
 .app-header {
-  width: 66rem;
   margin-bottom: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 5rem;
 }
 
 .error {
@@ -62,7 +62,6 @@ img {
 }
 
 h1 {
-  font-family: "Codystar";
   font-size: 5.6rem;
 }
 
