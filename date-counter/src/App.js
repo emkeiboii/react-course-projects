@@ -6,6 +6,7 @@ import Error from "./components/Error.js";
 import StartQuestions from "./components/StartQuestions.js";
 import Questions from "./components/Questions.js";
 import NextButton from "./components/NextButton.js";
+import Progress from "./components/Progress.js";
 
 const initialState = {
   questions: [],
@@ -58,7 +59,7 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ questions, status, index, answer }, dispatch] = useReducer(
+  const [{ questions, status, index, answer, points }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -71,6 +72,10 @@ export default function App() {
   }, []);
 
   const numQuestions = questions.length;
+  const maxPossiblePoints = questions.reduce(
+    (prev, cur) => prev + cur.points,
+    0
+  );
 
   return (
     <div className="app">
@@ -83,6 +88,13 @@ export default function App() {
         {status === "error" && <Error />}
         {status === "active" && (
           <>
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              mPP={maxPossiblePoints}
+              answer={answer}
+            />
             <Questions
               question={questions[index]}
               dispatch={dispatch}
